@@ -14,14 +14,13 @@ def manage_camp(google_sheet_link):
             if worksheet_id:
                 worksheet_id = int(worksheet_id) 
                 # print("Worksheet ID:", worksheet_id)
+                #? iterate over the list to get the desried the worksheet id as gspread uses 0 indexing
                 worksheet_list =spread_sheet_data.worksheets()
                 print("work sheet lists", worksheet_list)
                 cnt=0
                 for id in worksheet_list:
                     # print(id)
                     if id.id == worksheet_id:
-                
-                        
                         break
                     else:
                         cnt+=1
