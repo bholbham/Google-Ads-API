@@ -20,6 +20,8 @@ def manage_camp(google_sheet_link):
                 for id in worksheet_list:
                     # print(id)
                     if id.id == worksheet_id:
+                        aa
+                        
                         break
                     else:
                         cnt+=1
