@@ -9,33 +9,39 @@ def manage_camp(google_sheet_link):
     spread_sheet_data = get_doc(google_sheet_link)
     # print(spread_sheet_data)
     if spread_sheet_data:
-        try:
             worksheet_id = get_worksheet_id(google_sheet_link)
             if worksheet_id:
-                worksheet_id = int(worksheet_id) 
-                # print("Worksheet ID:", worksheet_id)
-                #? iterate over the list to get the desried the worksheet id as gspread uses 0 indexing
-                worksheet_list =spread_sheet_data.worksheets()
-                print("work sheet lists", worksheet_list)
-                cnt=0
-                for id in worksheet_list:
-                    # print(id)
-                    if id.id == worksheet_id:
-                        break
-                    else:
-                        cnt+=1
-                worksheet = spread_sheet_data.get_worksheet(cnt)
-                worksheet_rows = worksheet.get_all_records()
-                for row in worksheet_rows:
-                    match row['operation']:
-                        case 'CREATE_CAMPAIGN':
-                            create_camp(google_ads_client, row, worksheet)
-                        case _:
-                            print("No such case to handle - ", row['operation'])    
-                worksheet = spread_sheet_data.get_worksheet(worksheet_id)
-                worksheet_rows = worksheet.get_all_records()
-        except Exception as e:
-            print("An error occurred:", str(e))
+                try:
+                    worksheet_id = int(worksheet_id) 
+                    # print("Worksheet ID:", worksheet_id)
+                    #? iterate over the list to get the desried the worksheet id as gspread uses 0 indexing
+                    worksheet_list =spread_sheet_data.worksheets()
+                    print("work sheet lists", worksheet_list)
+                    cnt=0
+                    for id in worksheet_list:
+                        # print(id)
+                        if id.id == worksheet_id:
+                            break
+                        else:
+                            cnt+=1
+                    worksheet = spread_sheet_data.get_worksheet(cnt)
+                    worksheet_rows = worksheet.get_all_records()
+                    for row in worksheet_rows:
+                        match row['operation']:
+                            case 'CREATE_CAMPAIGN':
+                                create_camp(google_ads_client, row, worksheet)
+                            case _:
+                                print("No such case to handle - ", row['operation'])    
+                except Exception as e:
+                    print("An error occurred while fetching the proper index", str(e))
+            else:
+                return "Not able to access worksheet"
+    else:
+        return "Not able to access spread sheet"
+    
+    
+    
+# ? work sheet access method
 
         # worksheet_id = get_worksheet_id(google_sheet_link)
         # if worksheet_id:
@@ -50,10 +56,6 @@ def manage_camp(google_sheet_link):
                 #         create_camp(google_ads_client, row, worksheet)
                 #     case _:
                 #         print("No such case to handle - ", row['operation'])
-        else:
-            return "Not able to access worksheet"
-    else:
-        return "Not able to access spread sheet"
     
     
     
