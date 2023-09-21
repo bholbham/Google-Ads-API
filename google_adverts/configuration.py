@@ -18,6 +18,15 @@ credentials = {
     "login_customer_id":"2544551178" #? test manager id
 }
 
+# credentials = {
+#     "developer_token": "",
+#     "refresh_token": "",
+#     "client_id": "",
+#     "client_secret": "",
+#     "use_proto_plus": "",
+#     "login_customer_id":"" #? manager id
+# }
+
 
 class GoogleAds:
     google_ads_client = None
@@ -30,9 +39,9 @@ class GoogleAds:
         return GoogleAds.google_ads_client
 
 
-# if __name__ == "__main__":
-#     google_ads_client_instance = GoogleAds()
-#     print(google_ads_client_instance.get_google_ads_client())
-#     google_ads_client_instance_two = GoogleAds()
-#     print(google_ads_client_instance_two.get_google_ads_client()) 
+if __name__ == "__main__":
+    google_ads_client_instance = GoogleAds()
+    print(google_ads_client_instance.get_google_ads_client())
+    google_ads_client_instance_two = GoogleAds()
+    print(google_ads_client_instance_two.get_google_ads_client()) 
 #     # ! why two different instances created here

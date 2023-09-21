@@ -1,12 +1,15 @@
 from google.ads.googleads.errors import GoogleAdsException
 from campaign.manage_campaign import manage_camp;
 from campaign.get_campaign import get_camp;
+from keywords.keyword_fetch import fetch_keywords
 
 if __name__ == "__main__":
     try:
         # get_camp("7211435635")
         google_sheet_link = "https://docs.google.com/spreadsheets/d/1sok4RoKO4NcPNbo2kt_l7332EXmox0YP4zvcvcoffQ8/edit#gid=337718055"
+        keywords_sheet_link ="https://docs.google.com/spreadsheets/d/1zb-NEvbsWfWAhso4ZFlX1Ldr3e16sq9txt7vjoxcWyA/edit#gid=1367766077"
         manage_camp(google_sheet_link)
+        # fetch_keywords(keywords_sheet_link)
     except GoogleAdsException as ex:
         print(
             f'Request with ID "{ex.request_id}" failed with status '

@@ -1,0 +1,1 @@
+# keyword_phrases_list = [`${brand_name}`,`${brand_name} ${city_name}`,]
